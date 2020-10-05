@@ -11,3 +11,5 @@ requirements.txt
 *.pyc
 *.swp
 *.sqlite3
+测试.html
+blog_config/settings/develop_settings.py
