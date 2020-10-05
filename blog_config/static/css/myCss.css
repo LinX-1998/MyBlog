@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.img-opacity {
+    opacity: 0.8;
+}
+
+.div-position {
+    position: relative;
+    overflow: hidden;
+}
+
+.font-position {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.font-color{
+    color: white;
+}
+
+#div-post-1 img{
+    transition: all 0.6s;
+}
+#div-post-1:hover img{
+    transform: scale(1.2);
+}
+
+#div-post-2 img{
+    transition: all 0.6s;
+}
+#div-post-2:hover img{
+    transform: scale(1.2);
+}
+
+.top-bottom-style {
+    width:100%;
+    height: 55px;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-style {
+    width: 1200px;
+    height: 100%;
+}
+
+.background-red{
+    background-color: red;
+}
+
+.background-green{
+    background-color: green;
+}
+
+.background-pink{
+    background-color:pink;
+}
+
+.background-black{
+    background-color: black;
+}
+
+.background-blue{
+    background-color: blue;
+}
+
+.background-white{
+    background-color: white;
+}
+
+.height-125 {
+    height: 125px;
+}
+
+.height-226 {
+    height: 226px;
+}
+
+.height-260{
+    height: 260px;
+}
+
+.height-270{
+    height: 270px;
+}
+
+.width-270{
+    width: 270px;
+}
+
+.width-280 {
+    width: 280px;
+}
+
+.width-617 {
+    width: 617px;
+}
+
+.width-902 {
+    width: 902px;
+}
+
+.width-1200{
+    width: 1200px;
+}
+
+.margin-up-10 {
+    margin-top: 10px;
+}
+
+.margin-up-15 {
+    margin-top: 15px;
+}
+
+.margin-left-15 {
+    margin-left: 15px;
+}
+
+.margin-left-18 {
+    margin-left: 18px;
+}
+
+.margin-up-15-auto {
+    margin: 15px auto 0px;
+}
+
+.swiper-container {
+    width: 617px;
+    height: 260px;
+    --swiper-theme-color: #FF6600;/* 设置Swiper风格 */
+    --swiper-navigation-color: #FFFFFF;/* 单独设置按钮颜色 */
+    --swiper-navigation-size: 20px;/* 设置按钮大小 */
+}
