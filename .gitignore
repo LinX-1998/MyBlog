@@ -4,9 +4,6 @@ py37
 ## PYCHARM FILE ##
 .idea
 
-## PYTHON PACKAGE ##
-requirements.txt
-
 ## DJANGO FILE  ##
 *.pyc
 *.swp
