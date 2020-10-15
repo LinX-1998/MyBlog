@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import reverse
 from blog.adminforms import ArticleAdminForm
-from blog.models import Category, Tag, Article, Comment, Banner, Link, RecommendPosition, RecommendOut
+from blog.models import Category, Tag, Article, Comment, Banner, Link, Recommend
 from blog_config.base_admin import SuperBaseOwnerAdmin
 from django.utils.html import format_html
 from django.contrib.admin.models import LogEntry
@@ -23,15 +23,15 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    list_display = ['name', 'created_time']
-    fields = ['name']
+    list_display = ['name', 'index', 'created_time']
+    fields = ['name', 'index']
 
 
 @admin.register(Article)
 class ArticleAdmin(SuperBaseOwnerAdmin):
     form = ArticleAdminForm
-    list_display = ['title', 'user', 'category', 'views', 'created_time', 'modified_time', 'operator']
-    fields = ['title', 'abstract', 'category', 'tags', 'img', 'body', 'views', 'recommend_position']
+    list_display = ['title', 'user', 'category', 'can_comment', 'is_technique', 'is_life', 'views', 'created_time', 'modified_time', 'operator']
+    fields = ['title', 'abstract', 'category', 'can_comment', 'tags', 'img', ('is_technique', 'is_life'), 'body', 'views', 'picture_type', 'recommend']
     list_display_links = []
     list_filter = ['category', ]
     search_fields = ['title', 'user__username']
@@ -52,31 +52,26 @@ class ArticleAdmin(SuperBaseOwnerAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['article', 'user', 'comment_body', 'comment_time']
+    list_display = ['article', 'user', 'parent_comment', 'comment_body', 'comment_time']
+    fields = ['article', 'user', 'parent_comment', 'comment_body']
 
 
 @admin.register(Banner)
 class BannerAdmin(admin.ModelAdmin):
-    list_display = ['text_info', 'link_url', 'is_active', 'created_time']
-    fields = ['text_info', 'img', 'is_activate']
+    list_display = ['text_info', 'img', 'link_url', 'is_active', 'created_time']
+    fields = ['text_info', 'img', 'link_url', 'is_active']
 
 
 @admin.register(Link)
 class LinkAdmin(admin.ModelAdmin):
-    list_display = ['name', 'link_url', 'created_time']
-    fields = ['name', 'link_url']
+    list_display = ['name', 'link_url', 'index', 'created_time']
+    fields = ['name', 'link_url', 'index']
 
 
-@admin.register(RecommendPosition)
-class RecommendPositionAdmin(admin.ModelAdmin):
+@admin.register(Recommend)
+class RecommendAdmin(admin.ModelAdmin):
     list_display = ['name', 'created_time']
     fields = ['name']
-
-
-@admin.register(RecommendOut)
-class RecommendOutAdmin(admin.ModelAdmin):
-    list_display = ['title', 'introduction', 'link_url', 'created_time']
-    fields = ['title', 'introduction', 'link_url']
 
 
 @admin.register(LogEntry)

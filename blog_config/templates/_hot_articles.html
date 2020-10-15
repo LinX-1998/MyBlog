@@ -1,0 +1,52 @@
+{% load static %}
+
+{% if hot_articles %}
+<div class="height-226 background-white margin-up-15-auto">
+    <div class="height-40 flex-left margin-left-20 margin-right-20 border-bottom-style">
+        <span class="font-size-16 font-color-green">热门排行</span>
+    </div>
+    <div class="height-150 margin-left-20 margin-up-18 margin-right-20">
+        <div class="height-30 flex-left">
+            <span class="width-20 height-20 flex-center font-color-white" style="background-color:#fd8c84;">1</span>
+            <span class="width-per-85 height-30 line-style margin-left-10 new-overflow">
+                <a href="{% url 'article_detail' hot_articles.0.id %}" class="font-size-14 font-color-green" target="_blank">{{ hot_articles.0.title }}</a>
+            </span>
+            <i class="fa fa-street-view font-color-pink" aria-hidden="true"></i>
+            <span class="font-size-14 font-color-pink margin-left-10">{{ hot_articles.0.views }}</span>
+        </div>
+        <div class="height-30 flex-left">
+            <span class="width-20 height-20 flex-center font-color-white" style="background-color:#6fc299;">2</span>
+            <span class="width-per-85 height-30 line-style margin-left-10 new-overflow">
+                <a href="{% url 'article_detail' hot_articles.1.id %}" class="font-size-14 font-color-green" target="_blank">{{ hot_articles.1.title }}</a>
+            </span>
+            <i class="fa fa-street-view font-color-pink" aria-hidden="true"></i>
+            <span class="font-size-14 font-color-pink margin-left-10">{{ hot_articles.1.views }}</span>
+        </div>
+        <div class="height-30 flex-left">
+            <span class="width-20 height-20 flex-center font-color-white" style="background-color:#81c1f2;">3</span>
+            <span class="width-per-85 height-30 line-style margin-left-10 new-overflow">
+                <a href="{% url 'article_detail' hot_articles.2.id %}" class="font-size-14 font-color-green" target="_blank">{{ hot_articles.2.title }}</a>
+            </span>
+            <i class="fa fa-street-view font-color-pink" aria-hidden="true"></i>
+            <span class="font-size-14 font-color-pink margin-left-10">{{ hot_articles.2.views }}</span>
+        </div>
+        <div class="height-30 flex-left">
+            <span class="width-20 height-20 flex-center font-color-white" style="background-color:#999;">4</span>
+            <span class="width-per-85 height-30 line-style margin-left-10 new-overflow">
+                <a href="{% url 'article_detail' hot_articles.3.id %}" class="font-size-14 font-color-green" target="_blank">{{ hot_articles.3.title }}</a>
+            </span>
+            <i class="fa fa-street-view font-color-pink" aria-hidden="true"></i>
+            <span class="font-size-14 font-color-pink margin-left-10">{{ hot_articles.3.views }}</span>
+
+        </div>
+        <div class="height-30 flex-left">
+            <span class="width-20 height-20 flex-center font-color-white" style="background-color:#999;">5</span>
+            <span class="width-per-85 height-30 line-style margin-left-10 new-overflow">
+                <a href="{% url 'article_detail' hot_articles.4.id %}" class="font-size-14 font-color-green" target="_blank">{{ hot_articles.4.title }}</a>
+            </span>
+            <i class="fa fa-street-view font-color-pink" aria-hidden="true"></i>
+            <span class="font-size-14 font-color-pink margin-left-10">{{ hot_articles.4.views }}</span>
+        </div>
+    </div>
+</div>
+{% endif %}

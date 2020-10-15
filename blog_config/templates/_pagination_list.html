@@ -1,0 +1,54 @@
+{% load static %}
+
+<div class="row">
+    <div class="flex-center">
+        <ul class="pagination">
+            {% if contacts.has_previous %}
+                <li class="page-item">
+                    <a href="?page=1" class="page-link">« 首页</a>
+                </li>
+                <li class="page-item">
+                    <a href="?page={{ contacts.previous_page_number }}" class="page-link">上一页</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">« 首页</a>
+                    <a class="page-link">上一页</a>
+                </li>
+            {% endif %}
+
+            {% if contacts.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{contacts.previous_page_number}}" class="page-link">{{contacts.previous_page_number}}</a>
+                </li>
+            {% endif%}
+
+            <li class="page-item">
+                <a class="page-link active">{{contacts.number}}</a>
+            </li>
+
+            {% if contacts.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ contacts.next_page_number }}" class="page-link">{{contacts.next_page_number}}</a>
+                </li>
+            {% endif %}
+
+            {% if contacts.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ contacts.next_page_number }}" class="page-link">下一页</a>
+                </li>
+                <li class="page-item">
+                    <a href="?page={{ contacts.paginator.num_pages }}" class="page-link">尾页 »</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">下一页</a>
+                    <a class="page-link">尾页 »</a>
+                </li>
+            {% endif %}
+            <li class="page-item disabled">
+                <a class="page-link">第{{contacts.number}}页，共{{ contacts.paginator.num_pages }}页 </a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,96 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>首页</title>
-    <link rel="stylesheet" href="/static/css/swiper-bundle.css">
-    <link rel="stylesheet" href="/static/css/myCss.css">
-    <link rel="stylesheet" href="/static/css/font-awesome.css">
-</head>
-<body style="width: 100%; background-color: #EEEEEE;">
+{% extends 'base.html' %}
+{% load static %}
 
-<div style="width: 100%; height: 5px; background: linear-gradient(90deg,#FF0000,#00E1FF);"></div>
-
-<div class="top-bottom-style background-black flex-center">
-    <div class="nav-style background-pink flex-center">
-        -导航栏-
+{% block content %}
+<div class="row">
+    <div class="col-sm-9">
+        {% include "_banner.html" %}
+        {% include "_hot_articles.html" %}
+        {% include "_article_list.html" %}
+        {% include "_pagination_list.html" %}
+    </div>
+    <div class="col-sm-3">
+        {% include "_card.html" %}
+        {% include "_sidebar.html" %}
     </div>
 </div>
-
-<div class="width-1200 height-260 background-green margin-up-15-auto flex-center">
-    <div class="width-617 height-260 background-red flex-center">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="#">
-                        <img class="width-617 height-260" src="/static/picture/circle/circle_1.jpg" alt="轮播图第一张">
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <img class="width-617 height-260" src="/static/picture/circle/circle_2.jpg" alt="轮播图第二张">
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <img class="width-617 height-260" src="/static/picture/circle/circle_3.jpg" alt="轮播图第三张">
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <img class="width-617 height-260" src="/static/picture/circle/circle_4.jpg" alt="轮播图第四张">
-                    </a>
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>
-    </div>
-    <div class="width-270 height-260 background-white margin-left-15">
-        <div id="div-post-1"
-             class="width-270 height-125 div-position">
-            <a href="#">
-                <img class="width-270 height-125 img-opacity" src="/static/picture/circle/circle_1.jpg" alt="轮播图第一张">
-                <span class="font-position font-color">-文章1-</span>
-            </a>
-        </div>
-        <div id="div-post-2"
-             class="width-270 height-125 margin-up-10 div-position">
-             <a href="#">
-                <img class="width-270 height-125 img-opacity" src="/static/picture/circle/circle_2.jpg" alt="轮播图第一张">
-                <span class="font-position font-color">-文章2-</span>
-            </a>
-        </div>
-    </div>
-    <div class="width-280 height-260 background-red margin-left-18 flex-center">
-        -名片-
-    </div>
-</div>
-
-<div class="width-1200 background-green margin-up-15-auto flex-center">
-    <div class="width-902 background-blue">
-        <div class="width-902 height-226 background-red flex-center">
-            -热门文章-
-        </div>
-        <div class="width-902 background-red margin-up-15 flex-center">
-            -文章列表-
-        </div>
-    </div>
-    <div class="width-280 background-red margin-left-18 flex-center">
-        -侧边栏-
-    </div>
-</div>
-
-<div class="top-bottom-style margin-up-15 background-black flex-center">
-    <div class="nav-style background-pink flex-center">
-        -底部栏-
-    </div>
-</div>
-
-<script type="text/javascript" src="/static/js/swiper-bundle.js"></script>
-<script type="text/javascript" src="/static/js/myJs.js"></script>
-
-</body>
-</html>
+{% endblock %}

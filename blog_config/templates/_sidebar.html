@@ -1,0 +1,74 @@
+{% load static %}
+
+{% if categories %}
+<div class="background-white margin-up-15">
+    <div class="card mb-3">
+        <div class="card-header font-weight-600 height-40 flex-left margin-left-10">博客分类</div>
+            <ul class="list-group list-group-flush">
+                {% for category in categories %}
+                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <a href="{% url 'category_detail' category.name %}" class="font-color-green">{{ category.name }}</a>
+                        <span class="badge badge-primary badge-pill">{{ category.article_set.count }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+    </div>
+</div>
+{% endif %}
+
+{% if recommend_articles %}
+<div class="background-white margin-up-delete-5">
+    <div class="height-40 card-header font-weight-600 flex-left margin-left-10 margin-right-10">
+        <span class="font-size-14">猜你喜欢</span>
+    </div>
+    {% for recommend in recommend_articles %}
+    <a href="{% url 'article_detail' recommend.id %}" target="_blank">
+        <div class="height-100 flex-left margin-left-10 border-top-style margin-right-10 new-overflow">
+            <div class="width-100 height-100 flex-center margin-left-10">
+                <img src="/static/picture/type{{recommend.picture_type}}.jpg" class="width-100 height-64">
+            </div>
+            <div class="width-140 height-100 margin-left-10">
+                <div class="width-140 height-40 margin-up-18 new-overflow">
+                    <span class="font-size-14 font-color-green new-overflow">{{ recommend.title }}</span>
+                </div>
+                <div class="width-140 height-40 flex-left">
+                    <span class="font-size-14 font-color-min-white">{{ recommend.created_time.year }}-{{ recommend.created_time.month }}</span>
+                    <span class="margin-left-10 font-size-14 font-color-min-white">{{ recommend.views }}浏览</span>
+                </div>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if tags %}
+<div class="background-white margin-up-15">
+    <div class="height-40 card-header font-weight-600 flex-left margin-left-10 margin-right-10 border-bottom-style">
+        <span class="font-size-14">标签云</span>
+    </div>
+    <div class="margin-left-10 div-flex div-flex-column height-300 margin-right-10">
+        {% for tag in tags %}
+            <a href="{% url 'tag_detail' tag.name %}"
+               class="background-gray font-color-white margin-left-5 margin-right-5 margin-up-5 margin-bottom-5 flex-center">
+                {{ tag.name }}
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if links %}
+<div class="background-white margin-up-15">
+    <div class="card mb-3">
+        <div class="card-header font-weight-600 height-40 flex-left margin-left-10">友情链接</div>
+            <ul class="list-group list-group-flush">
+                {% for link in links %}
+                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <a href="{{ link.link_url }}" class="font-color-green" target="_blank">{{ link.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+    </div>
+</div>
+{% endif %}

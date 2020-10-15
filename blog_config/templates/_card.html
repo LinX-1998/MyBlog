@@ -1,0 +1,34 @@
+{% load static %}
+
+<div class="height-260 background-max-black margin-up-15-auto">
+    <div class="height-60 flex-left">
+        <span class="font-size-20 font-weight-540 font-color-min-white">&nbsp;个人名片</span>
+    </div>
+    <div class="height-30 flex-left">
+        <span class="font-size-13 font-color-max-white">&nbsp;&nbsp;&nbsp;&nbsp;站长: 翔仔</span>
+    </div>
+    <div class="height-30 flex-left">
+        <span class="font-size-13 font-color-max-white">&nbsp;&nbsp;&nbsp;&nbsp;职业: 天天玩耍代码狗</span>
+    </div>
+    <div class="height-30 flex-left">
+        <span class="font-size-13 font-color-max-white">&nbsp;&nbsp;&nbsp;&nbsp;Email: coder_linxiang@163.com</span>
+    </div>
+    <div class="height-80 flex-left">
+        <div class="width-50 height-80 margin-left-14 flex-center new-overflow">
+            <a href="{% url 'index' %}">
+                <i class="fa fa-home fa-4x background-max-black image-icon-1"></i>
+            </a>
+        </div>
+        <div class="width-50 height-80 margin-left-18 flex-center new-overflow">
+            <a href="mailto:{{ email_url }}">
+                <i class="fa fa-envelope fa-3x background-max-black image-icon-2"></i>
+            </a>
+        </div>
+        <div class="width-50 height-80 margin-left-18 flex-center new-overflow">
+            <i class="fa fa-weixin fa-3x background-max-black image-icon-3 new-cursor" id="one-icon"></i>
+        </div>
+        <div class="width-70 height-80 margin-left-5 flex-center new-overflow">
+            <img src="/static/wechat.jpg" class="wechat" id="two-icon">
+        </div>
+    </div>
+</div>

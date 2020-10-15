@@ -1,0 +1,52 @@
+{% load static %}
+
+{% if contacts %}
+    {% for article in contacts %}
+    <div class="margin-up-15 height-250 background-white" style="border: 1px solid white;">
+        <div class="margin-left-20 height-40 flex-left margin-up-15">
+            <div class="font-size-15 font-color-white height-20 blog-article">
+                {% if article.is_technique %}
+                    技术杂谈
+                {% else %}
+                    生活笔记
+                {% endif %}
+                <i class="blog-article-icon"></i>
+            </div>
+            <div class="margin-left-10 height-40 new-overflow width-per-85">
+                <span class="blog-article-a new-overflow height-40 line-style-40">
+                    <a href="{% url 'article_detail' article.id %}" class="font-size-20 font-color-green" target="_blank">{{ article.title }}</a>
+                </span>
+            </div>
+        </div>
+
+        <div class="height-150 flex-left margin-left-20">
+            <div class="height-130 new-overflow blog-post-img">
+                <a href="{% url 'article_detail' article.id %}" target="_blank">
+                    <img src="/static/picture/type{{article.picture_type}}.jpg" class="new-overflow height-130 width-200">
+                </a>
+            </div>
+            <div class="height-130 font-size-15 font-color-grey new-overflow blog-post-body">
+                <span class="font-size-15">
+                    {{ article.body|striptags|truncatechars:150 }}...
+                </span>
+            </div>
+        </div>
+
+        <div class="height-30 new-overflow blog-post-footer line-style">
+            <i class="fa fa-user font-color-grey" aria-hidden="true"></i>
+            <span class="font-color-grey">&nbsp;&nbsp;{{ article.user.username }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fa fa-clock-o font-color-grey" aria-hidden="true"></i>&nbsp;&nbsp;
+            <span class="font-color-grey">{{ article.created_time }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fa fa-comments-o font-color-grey" aria-hidden="true"></i>
+            <span>&nbsp;&nbsp;{{ article.views }}浏览</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fa fa-tags font-color-grey" aria-hidden="true"></i>
+            <a href="{% url 'category_detail' article.category.name %}" class="font-color-green" target="_blank">&nbsp;&nbsp;{{ article.category.name }}</a>
+        </div>
+    </div>
+    {% endfor%}
+{% else %}
+    <div class="tip">
+        <h5>目前该模块还没有文章呢</h5>
+        <h5> ╮(๑•́ ₃•̀๑)╭</h5>
+    </div>
+{% endif %}

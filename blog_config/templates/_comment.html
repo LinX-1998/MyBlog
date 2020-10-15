@@ -1,0 +1,35 @@
+{% load static %}
+{% load custom %}
+
+<div class="margin-up-20 background-white" id="comment_position">
+    <form method="post" action="{% url 'comment_detail' article.id %}">
+        {% csrf_token %}
+        <div class="margin-left-20 height-40 flex-left">昵称：
+            <input type="text" name="your_name">
+        </div>
+        {% if comment %}
+        <div class="margin-left-20 height-40 flex-left">回复：
+            <input type="text" name="his_name" placeholder="{{comment.comment_body|striptags|truncatechars:10}}..." disabled>
+            <input type="text" name="her_name" value="{{cid}}" style="display:none;">
+        </div>
+        {% endif %}
+        <div class="margin-left-20 flex-left">
+            <p>内容：</p>
+            <textarea cols="80" rows="10" name="your_body"></textarea>
+        </div>
+        <div class="margin-left-20 margin-up-10 margin-bottom-15 flex-left">提交：
+            <button class="btn btn-primary">上传</button>
+        </div>
+    </form>
+    <div class="height-5"></div>
+</div>
+
+<div class="background-white margin-up-2 height-40 flex-left">
+    <i class="margin-left-20 fa fa-comments-o font-color-min-green" aria-hidden="true"></i>
+    <span class="font-color-min-green font-size-18">{{ article.comment_set.count }}个小伙伴在吐槽</span>
+</div>
+{% if comment_tree %}
+<div class="background-white margin-up-2">
+    {% build_comment_tree comment_tree %}
+</div>
+{% endif %}

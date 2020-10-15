@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <meta name="description" content="-翔仔的个人博客，是一个分享生活和技术的的地方。博客文章分类详情页面。">
+    <meta name="keywords" content="文章分类 Django 翔仔">
+{% endblock %}
+
+{% block title %}文章分类页 - 翔仔的个人博客{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-9">
+        {% include "_article_list.html" %}
+        {% include "_pagination_list.html" %}
+    </div>
+    <div class="col-sm-3">
+        {% include "_sidebar.html" %}
+    </div>
+</div>
+{% endblock %}

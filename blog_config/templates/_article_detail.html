@@ -1,0 +1,37 @@
+{% load static %}
+
+{% if article %}
+<div class="height-30 background-white margin-up-15">
+    <div class="height-30 line-style margin-left-20 font-size-14 new-overflow" id="post-header-name">
+        <a href="{% url 'index' %}"><i class="fa fa-home font-color-min-green" aria-hidden="true"></i></a>
+        {% if article.is_life %}
+        &nbsp;&nbsp;>&nbsp;&nbsp;<a href="{% url 'blog_detail' '技术杂谈' %}"><span class="font-color-min-green font-size-14">技术杂谈</span></a>
+        {% else %}
+        &nbsp;&nbsp;>&nbsp;&nbsp;<a href="{% url 'blog_detail' '生活笔记' %}"><span class="font-color-min-green font-size-14">生活笔记</span></a>
+        {% endif %}
+        &nbsp;&nbsp;>&nbsp;&nbsp;<span class="new-overflow font-color-min-grey">{{ article.title }}</span>
+    </div>
+</div>
+<div class="height-80 background-white margin-up-2">
+    <div class="height-40 margin-left-20 new-overflow line-style-40 padding-up-5">
+        <span class="font-size-24 overflow-hidden">{{ article.title }}</span>
+    </div>
+    <div class="height-40 margin-left-20 new-overflow line-style-40" id="post-footer-name">
+        <i class="fa fa-list-alt font-color-min-grey" aria-hidden="true"></i>&nbsp;&nbsp;
+        <span class="font-color-min-grey font-size-14">{{ article.category.name }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-user font-color-min-grey" aria-hidden="true"></i>&nbsp;&nbsp;
+        <span class="font-color-min-grey font-size-14">{{ article.user }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-clock-o font-color-min-grey" aria-hidden="true"></i>&nbsp;&nbsp;
+        <span class="font-color-min-grey font-size-14">{{ article.created_time }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-comments-o font-color-min-grey" aria-hidden="true"></i>&nbsp;&nbsp;
+        <span class="font-color-min-grey font-size-14">{{ article.views }}浏览</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-tags font-color-min-grey" aria-hidden="true"></i>&nbsp;&nbsp;
+        <a href="{% url 'category_detail' article.category.name %}" class="font-color-min-green font-size-14">{{ article.category.name }}</a>
+    </div>
+</div>
+<div class="margin-up-2 background-white" style="border: 1px solid white;">
+    <div class="margin-all-20">
+        {{ article.body|safe }}
+    </div>
+</div>
+{% endif %}

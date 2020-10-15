@@ -1,0 +1,40 @@
+{% load static %}
+
+<div class="margin-up-2 background-white" style="border: 1px solid white;">
+    <div class="row">
+        <div class="col-sm-6 flex-left">
+            {% if previous_article %}
+                <div class="margin-all-5">
+                    <<&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{% url 'article_detail' previous_article.id %}" class="font-color-min-green font-size-15">
+                        {{ previous_article }}
+                    </a>
+                </div>
+            {% else %}
+                <div class="margin-all-5">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="font-color-min-green font-size-15">
+                        文章列表顶部
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-sm-6 flex-right">
+            {% if next_article %}
+                <div class="margin-all-5">
+                    <a href="{% url 'article_detail' next_article.id %}" class="font-color-min-green font-size-15">
+                        {{ next_article }}
+                    </a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;>>
+                </div>
+            {% else %}
+                <div class="margin-all-5">
+                    <span class="font-color-min-green font-size-15">
+                        文章列表底部
+                    </span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

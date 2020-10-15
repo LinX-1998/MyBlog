@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    {% block meta %}
+        <meta name="description" content="-翔仔的个人博客，是一个分享生活和技术的的地方。博客首页界面。">
+        <meta name="keywords" content="个人博客 Django 翔仔">
+    {% endblock %}
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}首页 - 翔仔的个人博客{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/myCss.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    {% endblock %}
+</head>
+<body style="width: 100%; background-color: #EEEEEE;">
+
+<div style="width: 100%; height: 5px; background: linear-gradient(90deg,#F6305D,#4CD965);"></div>
+
+{% block nav %}
+<div class="top-bottom-style background-min-black flex-center">
+    <div class="container nav-style div-flex new-overflow">
+        <div class="nav-blog-220 font-size-22 font-weight-500 new-overflow line-style-55">
+            <a class="font-color-white flex-left" href="{% url 'index' %}">翔仔的个人博客</a>
+        </div>
+        <div class="nav-blog-100 font-size-15 new-overflow line-style-55">
+            <a class="font-color-min-blue" href="{% url 'index' %}">网站首页</a>
+        </div>
+        <div class="nav-blog-100 font-size-15 new-overflow line-style-55">
+            <a class="font-color-white" href="{% url 'blog_detail' '生活笔记' %}">生活笔记</a>
+        </div>
+        <div class="nav-blog-100 font-size-15 new-overflow line-style-55">
+            <a class="font-color-white" href="{% url 'blog_detail' '技术杂谈' %}">技术杂谈</a>
+        </div>
+        <div class="nav-blog-150 font-size-15 new-overflow line-style-55">
+            <a class="font-color-white" href="mailto:{{ email_url }}">邮件博主</a>
+        </div>
+        <div class="nav-blog-300 font-size-15 new-overflow flex-left">
+            <form class="navbar-form navbar-left new-overflow flex-left" method="get" action="/search/">
+                <div class="form-group">
+                    <input type="search" class="form-control" placeholder="Search" name="search">
+                </div>
+                <button type="submit" class="btn btn-default margin-left-15">
+                    <i class="fa fa-search new-overflow"></i>
+                </button>
+            </form>
+        </div>
+        <div class="nav-blog-130 font-size-15 new-overflow flex-center line-style-55">
+            <div id="music" class="flex-center">
+                <audio src="{% static 'music/李荣浩-年少有为.mp3' %}" loop id="media" preload="preload"></audio>
+                <img id="music_on" class="new-cursor" style="border-radius:70%; width:30px; height:30px; display: none;" src="{% static 'music/music_on.png' %}">
+                <img id="music_off" class="new-cursor" style="border-radius:70%; width:30px; height:30px;" src="{% static 'music/music_off.png' %}">
+            </div>
+        </div>
+        <div class="nav-blog-100 font-size-15 new-overflow line-style-55">
+            <a href="/admin" class="font-color-white">博客后台</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+</div>
+
+<button type="button" class="back">
+    <i class="fa fa-arrow-up font-color-white" aria-hidden="true"></i>
+</button>
+
+{% block footer %}
+<div class="top-bottom-style margin-up-15 background-min-black flex-center">
+    <div class="container nav-style flex-center">
+        <span class="font-size-15 font-color-min-white">Copyright &copy; <a class="font-size-15 font-color-min-white buttom-hover" href="http://www.coderlx.com/">www.coderlx.com</a> All Rights Reserved.&nbsp;&nbsp;</span>
+        <span class="font-size-15 font-color-min-white">备案号: <a href="http://www.miitbeian.gov.cn/" class="font-size-15 font-color-min-white buttom-hover" >沪ICP备20000285号-1</a></span>
+    </div>
+</div>
+{% endblock %}
+
+<script type="text/javascript" src="{% static 'js/swiper-bundle.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/myJs.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>

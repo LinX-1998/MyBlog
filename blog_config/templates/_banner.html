@@ -1,0 +1,16 @@
+{% load static %}
+
+<div class="swiper-container background-red margin-up-15-auto">
+    <div class="swiper-wrapper">
+        {% for banner in banners %}
+        <div class="swiper-slide">
+            <a href="{{ banner.link_url }}" target="_blank">
+                <img class="width-auto height-auto" src="{{ image_url }}{{ banner.img }}" alt="轮播图">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
