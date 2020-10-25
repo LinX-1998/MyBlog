@@ -185,7 +185,7 @@ class Link(models.Model):
 class Comment(models.Model):
     comment_time = models.DateTimeField(auto_now_add=True, verbose_name='评论时间')
     comment_body = models.CharField(max_length=2000, verbose_name='评论内容')
-    user = models.CharField(max_length=100, verbose_name='评论者')
+    user = models.CharField(max_length=100, verbose_name='评论者', blank=True, null=True)
     article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name='评论文章', blank=True, null=True)
     parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name='回复对象',
                                        blank=True, null=True, related_name='p_comment')
@@ -217,7 +217,7 @@ class Comment(models.Model):
 class Message(models.Model):
     message_time = models.DateTimeField(auto_now_add=True, verbose_name='评论时间')
     message_body = models.CharField(max_length=2000, verbose_name='评论内容')
-    user = models.CharField(max_length=100, verbose_name='评论者')
+    user = models.CharField(max_length=100, verbose_name='评论者', blank=True, null=True)
     parent_message = models.ForeignKey('self', on_delete=models.CASCADE, verbose_name='回复对象',
                                        blank=True, null=True, related_name='p_message')
 
