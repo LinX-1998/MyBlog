@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path, include
 from blog.views import *
+from django.contrib.sitemaps import views as sitemap_views
+from blog.sitemap import ArticleSitemap
 
 urlpatterns = [
     path(r'admin/', admin.site.urls, name='admin'),
@@ -28,5 +30,6 @@ urlpatterns = [
     path(r'search/', search_detail, name='search_detail'),
     path(r'comment/<int:aid>', comment_detail, name='comment_detail'),
     path(r'mdeditor/', include('mdeditor.urls')),
+path('sitemap.xml', sitemap_views.sitemap, {'sitemaps': {'articles': ArticleSitemap}}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 

@@ -259,9 +259,8 @@ def comment_detail(request, aid):
     comment_body = request.POST.get('your_body')
     article = Article.get_by_id(aid)
     cid = request.POST.get('her_name')
-    print("YES", article.id)
-    print(cid)
-    print("YES")
+    if cid is None:
+        cid = 0
     with transaction.atomic():
         if cid == 0:
             comment_obj = Comment.objects.create(user=user, comment_body=comment_body, article=article)

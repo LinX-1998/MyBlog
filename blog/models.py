@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.functional import cached_property
 from mdeditor.fields import MDTextField
 
 
@@ -128,6 +129,10 @@ class Article(models.Model):
     def get_all():
         queryset = Article.objects.all().select_related()
         return queryset
+
+    @cached_property
+    def new_tags(self):
+        return ','.join(self.tags.values_list('name', flat=True))
 
 
 # 轮播图
