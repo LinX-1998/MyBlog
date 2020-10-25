@@ -5,9 +5,9 @@
     <div class="height-30 line-style margin-left-20 font-size-14 new-overflow" id="post-header-name">
         <a href="{% url 'index' %}"><i class="fa fa-home font-color-min-green" aria-hidden="true"></i></a>
         {% if article.is_life %}
-        &nbsp;&nbsp;>&nbsp;&nbsp;<a href="{% url 'blog_detail' '技术杂谈' %}"><span class="font-color-min-green font-size-14">技术杂谈</span></a>
-        {% else %}
         &nbsp;&nbsp;>&nbsp;&nbsp;<a href="{% url 'blog_detail' '生活笔记' %}"><span class="font-color-min-green font-size-14">生活笔记</span></a>
+        {% else %}
+        &nbsp;&nbsp;>&nbsp;&nbsp;<a href="{% url 'blog_detail' '技术杂谈' %}"><span class="font-color-min-green font-size-14">技术杂谈</span></a>
         {% endif %}
         &nbsp;&nbsp;>&nbsp;&nbsp;<span class="new-overflow font-color-min-grey">{{ article.title }}</span>
     </div>
