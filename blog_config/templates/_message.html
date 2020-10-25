@@ -1,16 +1,16 @@
 {% load static %}
 {% load custom %}
 
-<div class="margin-up-20 background-white" id="comment_position">
-    <form method="post" action="{% url 'comment_detail' article.id %}">
+<div class="margin-up-20 background-white" id="message_position">
+    <form method="post" action="{% url 'send_message_detail' %}">
         {% csrf_token %}
         <div class="margin-left-20 height-40 flex-left">昵称：
             <input type="text" name="your_name">
         </div>
-        {% if comment %}
+        {% if message %}
         <div class="margin-left-20 height-40 flex-left">回复：
-            <input type="text" name="his_name" placeholder="{{comment.comment_body|striptags|truncatechars:10}}..." disabled>
-            <input type="text" name="her_name" value="{{cid}}" style="display:none;">
+            <input type="text" name="his_name" placeholder="{{message.message_body|striptags|truncatechars:10}}..." disabled>
+            <input type="text" name="her_name" value="{{mid}}" style="display:none;">
         </div>
         {% endif %}
         <div class="margin-left-20 flex-left">
@@ -26,10 +26,10 @@
 
 <div class="background-white margin-up-2 height-40 flex-left">
     <i class="margin-left-20 fa fa-comments-o font-color-min-green" aria-hidden="true"></i>
-    <span class="font-color-min-green font-size-18">&nbsp;{{ article.comment_set.count }}个小伙伴在吐槽</span>
+    <span class="font-color-min-green font-size-18">&nbsp;{{ message_count }}个小伙伴在吐槽</span>
 </div>
-{% if comment_tree %}
+{% if message_tree %}
 <div class="background-white margin-up-2">
-    {% build_comment_tree comment_tree %}
+    {% build_message_tree message_tree %}
 </div>
 {% endif %}

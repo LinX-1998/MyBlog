@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import reverse
 from blog.adminforms import ArticleAdminForm
-from blog.models import Category, Tag, Article, Comment, Banner, Link, Recommend
+from blog.models import Category, Tag, Article, Comment, Banner, Link, Recommend, Message
 from blog_config.base_admin import SuperBaseOwnerAdmin
 from django.utils.html import format_html
 from django.contrib.admin.models import LogEntry
@@ -72,6 +72,12 @@ class LinkAdmin(admin.ModelAdmin):
 class RecommendAdmin(admin.ModelAdmin):
     list_display = ['name', 'created_time']
     fields = ['name']
+
+
+@admin.register(Message)
+class RecommendAdmin(admin.ModelAdmin):
+    list_display = ['user', 'parent_message', 'message_body', 'message_time']
+    fields = ['user', 'parent_message', 'message_body']
 
 
 @admin.register(LogEntry)

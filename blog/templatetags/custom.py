@@ -12,7 +12,27 @@ from django.utils.safestring import mark_safe
 register = template.Library()
 
 
-def research_build_tree(html, tree, indent):
+def research_build_message_tree(html, tree, indent):
+    for key, value in tree.items():
+        row = '''<div class="margin-up-10" style="background-color:#fbfdfb; border:1px solid #eee; margin-left:%spx;">
+                    <div class='margin-left-10 margin-up-2'>%s</div>
+                    <div class='margin-left-10 margin-up-2'>
+                        <span class='font-color-min-green'>%s</span>
+                        <span class='margin-left-5'>%s</span>
+                        <a href='/message?mid=%s#message_position'>
+                        <span class='margin-left-5 font-color-min-green'>回复</span>
+                        </a>
+                    </div>
+                    </div>
+                    ''' % (indent, key.message_body, key.user, key.message_time.strftime('%Y-%m-%d %T'), key.id)
+
+        html += row
+        if value:
+            html = research_build_message_tree(html, tree[key], indent+50)
+    return html
+
+
+def research_build_comment_tree(html, tree, indent):
     for key, value in tree.items():
         row = '''<div class="margin-up-10" style="background-color:#fbfdfb; border:1px solid #eee; margin-left:%spx;">
                     <div class='margin-left-10 margin-up-2'>%s</div>
@@ -28,8 +48,32 @@ def research_build_tree(html, tree, indent):
 
         html += row
         if value:
-            html = research_build_tree(html, tree[key], indent+50)
+            html = research_build_comment_tree(html, tree[key], indent+50)
     return html
+
+
+@register.simple_tag
+def build_message_tree(message_tree):
+
+    html = "<div style='border: 1px solid white;'>"
+
+    for key, value in message_tree.items():
+        row = '''<div class="margin-left-20 margin-up-10" style="background-color:#fbfdfb; border:1px solid #eee;">
+            <div class='margin-left-10 margin-up-2'>%s</div>
+            <div class='margin-left-10 margin-up-2'>
+                <span class='font-color-min-green'>%s</span>
+                <span class='margin-left-5'>%s</span>
+                <a href='/message?mid=%s#message_position'>
+                <span class='margin-left-5 font-color-min-green'>回复</span>
+                </a>
+            </div>
+            </div>''' % (key.message_body, key.user, key.message_time.strftime('%Y-%m-%d %T'), key.id)
+        html += row
+
+        if value:
+            html = research_build_message_tree(html, message_tree[key], 70)
+    html += "<div class='height-10'></div></div>"
+    return mark_safe(html)
 
 
 @register.simple_tag
@@ -51,6 +95,6 @@ def build_comment_tree(comment_tree):
         html += row
 
         if value:
-            html = research_build_tree(html, comment_tree[key], 70)
+            html = research_build_comment_tree(html, comment_tree[key], 70)
     html += "<div class='height-10'></div></div>"
     return mark_safe(html)

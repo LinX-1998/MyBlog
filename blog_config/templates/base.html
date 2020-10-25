@@ -37,7 +37,7 @@
             <a class="font-color-white" href="{% url 'blog_detail' '技术杂谈' %}">技术杂谈</a>
         </div>
         <div class="nav-blog-150 font-size-15 new-overflow line-style-55">
-            <a class="font-color-white" href="mailto:{{ email_url }}">邮件博主</a>
+            <a class="font-color-white" href="{% url 'message_detail' %}">给我留言</a>
         </div>
         <div class="nav-blog-300 font-size-15 new-overflow flex-left">
             <form class="navbar-form navbar-left new-overflow flex-left" method="get" action="/search/">

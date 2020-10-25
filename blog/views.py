@@ -74,7 +74,6 @@ def category_detail(request, category_name):
         contacts = paginator.page(paginator.num_pages)
 
     context = {
-        'email_url': settings.EMAIL_URL,
         'contacts': contacts,
         'articles': articles,
         'categories': categories,
@@ -109,7 +108,6 @@ def tag_detail(request, tag_name):
         contacts = paginator.page(paginator.num_pages)
 
     context = {
-        'email_url': settings.EMAIL_URL,
         'contacts': contacts,
         'articles': articles,
         'categories': categories,
@@ -144,7 +142,6 @@ def blog_detail(request, detail):
         contacts = paginator.page(paginator.num_pages)
 
     context = {
-        'email_url': settings.EMAIL_URL,
         'contacts': contacts,
         'articles': articles,
         'categories': categories,
@@ -181,7 +178,6 @@ def article_detail(request, aid):
     tags = Tag.get_all()
 
     context = {
-        'email_url': settings.EMAIL_URL,
         'article': article,
         'comment_tree': comment_tree,
         'categories': categories,
@@ -221,7 +217,6 @@ def search_detail(request):
         contacts = paginator.page(paginator.num_pages)
 
     context = {
-        'email_url': settings.EMAIL_URL,
         'contacts': contacts,
         'articles': articles,
         'categories': categories,
@@ -270,3 +265,66 @@ def comment_detail(request, aid):
     messages.add_message(request, messages.SUCCESS, '评论发表成功', extra_tags='success')
     return redirect(to=article_detail, aid=aid)
 
+
+def find_parent_message(message_tree, message):
+    for parent, value in message_tree.items():
+        if parent == message.parent_message:
+            message_tree[parent][message] = {}
+        else:
+            find_parent_message(message_tree[parent], message)
+
+
+def create_message_tree():
+    all_messages = Message.get_all()
+    message_tree = {}
+
+    for message in all_messages:
+        if message.parent_message is None:
+            message_tree[message] = {}
+        else:
+            find_parent_message(message_tree, message)
+
+    return message_tree
+
+
+def message_detail(request):
+    mid = request.GET.get('mid')
+    message = None
+    if mid is None:
+        mid = 0
+    else:
+        message = Message.get_by_mid(mid)
+    message_count = Message.get_count()
+    message_tree = create_message_tree()
+    recommend_articles = Article.get_by_recommend()
+    categories = Category.get_all()
+    links = Link.get_all()
+    tags = Tag.get_all()
+
+    context = {
+        'message_tree': message_tree,
+        'categories': categories,
+        'tags': tags,
+        'links': links,
+        'recommend_articles': recommend_articles,
+        'message': message,
+        'mid': mid,
+        'message_count': message_count,
+    }
+    return render(request, 'message.html', context=context)
+
+
+def send_message_detail(request):
+    user = request.POST.get('your_name')
+    message_body = request.POST.get('your_body')
+    mid = request.POST.get('her_name')
+    if mid is None:
+        mid = 0
+    with transaction.atomic():
+        if mid == 0:
+            message_obj = Message.objects.create(user=user, message_body=message_body)
+        else:
+            message = Message.get_by_mid(mid)
+            message_obj = Message.objects.create(user=user, message_body=message_body, parent_message=message)
+    messages.add_message(request, messages.SUCCESS, '评论发表成功', extra_tags='success')
+    return redirect(to=message_detail)

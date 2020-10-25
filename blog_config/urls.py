@@ -30,6 +30,8 @@ urlpatterns = [
     path(r'search/', search_detail, name='search_detail'),
     path(r'comment/<int:aid>', comment_detail, name='comment_detail'),
     path(r'mdeditor/', include('mdeditor.urls')),
-path('sitemap.xml', sitemap_views.sitemap, {'sitemaps': {'articles': ArticleSitemap}}, name='django.contrib.sitemaps.views.sitemap'),
+    path('sitemap.xml', sitemap_views.sitemap, {'sitemaps': {'articles': ArticleSitemap}}, name='django.contrib.sitemaps.views.sitemap'),
+    path(r'message', message_detail, name='message_detail'),
+    path(r'send_message', send_message_detail, name='send_message_detail'),
 ]
 
