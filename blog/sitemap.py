@@ -15,7 +15,7 @@ from blog.models import Article
 class ArticleSitemap(Sitemap):
     changefreq = "daily"
     priority = 0.6
-    protocol = 'http'
+    protocol = 'https'
 
     def items(self):
         return Article.objects.all()
